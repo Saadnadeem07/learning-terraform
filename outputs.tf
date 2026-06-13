@@ -1,0 +1,11 @@
+output "aws_ec2_public_id" {
+    value = aws_instance.my_instance.public_ip
+}
+
+output "aws_ec2_public_dns" {
+    value = aws_instance.my_instance.public_dns
+}
+
+output "aws_ec2_private_id" {
+    value = aws_instance.my_instance.private_ip
+}
