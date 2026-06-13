@@ -1,0 +1,10 @@
+# SSH keys
+my-tf-key
+*.pem
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+crash.log
