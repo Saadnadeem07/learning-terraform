@@ -1,26 +1,29 @@
 variable "region" {
-    default = "us-east-1"
-    type    = string
-    description = "region of aws ec2"
+  description = "AWS region to deploy resources in"
+  type        = string
+  default     = "us-east-1"
 }
 
 variable "instance_type" {
-  default     = "t2.micro"
+  description = "The EC2 instance size to deploy"
   type        = string
-  description = "The EC2 instance size to deploy" 
+  default     = "t2.micro"
 }
 
 variable "ubuntu_image_id" {
-  default     = "ami-0b6d9d3d33ba97d99"
+  description = "The Ubuntu AMI ID"
   type        = string
-  description = "The ubuntu ami id" 
+  default     = "ami-0b6d9d3d33ba97d99"
 }
 
 variable "ec2_volume_size" {
-    default = 15
-    type = number
+  description = "Size of the root EBS volume in GiB"
+  type        = number
+  default     = 15
 }
+
 variable "ec2_volume_type" {
-    default = "gp3"
-    type = string
+  description = "Type of the root EBS volume"
+  type        = string
+  default     = "gp3"
 }

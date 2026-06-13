@@ -5,13 +5,13 @@ resource "aws_key_pair" "key" {
 
 resource "aws_default_vpc" "default" {
   tags = {
-    Name = "Default VPC" 
+    Name = "Default VPC"
   }
 }
 
-resource "aws_security_group" "saad-sg" {
-  name        = "allow_tls"
-  description = "Allow TLS inbound traffic and all outbound traffic"
+resource "aws_security_group" "web" {
+  name        = "web-sg"
+  description = "Allow SSH, HTTP, and HTTPS inbound and all outbound traffic"
   vpc_id      = aws_default_vpc.default.id
   #inbound rules
   ingress {
@@ -47,11 +47,11 @@ resource "aws_security_group" "saad-sg" {
   }
 }
 
-resource "aws_instance" "my-instance" {
+resource "aws_instance" "web" {
   ami                    = var.ubuntu_image_id
   instance_type          = var.instance_type
   key_name               = aws_key_pair.key.key_name
-  vpc_security_group_ids = [aws_security_group.saad-sg.id]
+  vpc_security_group_ids = [aws_security_group.web.id]
 
   root_block_device {
     volume_size = var.ec2_volume_size

@@ -1,11 +1,14 @@
-output "aws_ec2_public_id" {
-    value = aws_instance.my_instance.public_ip
+output "public_ip" {
+  description = "Public IP address of the EC2 instance"
+  value       = aws_instance.web.public_ip
 }
 
-output "aws_ec2_public_dns" {
-    value = aws_instance.my_instance.public_dns
+output "public_dns" {
+  description = "Public DNS name of the EC2 instance"
+  value       = aws_instance.web.public_dns
 }
 
-output "aws_ec2_private_id" {
-    value = aws_instance.my_instance.private_ip
+output "private_ip" {
+  description = "Private IP address of the EC2 instance"
+  value       = aws_instance.web.private_ip
 }
