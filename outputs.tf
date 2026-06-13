@@ -13,21 +13,14 @@
 #   value       = aws_instance.web.private_ip
 # }
 
-output "public_ips" {
-    value = [
-        for instance in aws_instance.web : instance.public_ip
+output "instances" {
+    description = "Connection details for each EC2 instance, keyed by name"
 
-    ]
-}
-
-output "private_ips" {
-    value = [
-        for instance in aws_instance.web : instance.private_ip
-    ]
-}
-
-output "public_dns" {
-    value = [
-        for instance in aws_instance.web : instance.public_dns
-    ]
+    value = {
+        for name, instance in aws_instance.web : name => {
+            public_ip  = instance.public_ip
+            public_dns = instance.public_dns
+            private_ip = instance.private_ip
+        }
+    }
 }
