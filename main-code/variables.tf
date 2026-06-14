@@ -10,12 +10,6 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
-variable "ubuntu_image_id" {
-  description = "The Ubuntu AMI ID"
-  type        = string
-  default     = "ami-0b6d9d3d33ba97d99"
-}
-
 variable "ec2_volume_size" {
   description = "Size of the root EBS volume in GiB"
   type        = number

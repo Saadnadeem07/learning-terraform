@@ -1,3 +1,18 @@
+data "aws_ami" "ubuntu" {
+  most_recent = true
+  owners      = ["099720109477"] # Canonical
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
 resource "aws_key_pair" "key" {
   key_name   = "my-tf-key"
   public_key = file("my-tf-key.pub")
@@ -53,7 +68,7 @@ resource "aws_instance" "web" {
       # saad-nadeem = "t2.micro"
       # m = "t2.micro"
   })
-  ami                    = var.ubuntu_image_id
+  ami                    = data.aws_ami.ubuntu.id
   instance_type          = each.value
   key_name               = aws_key_pair.key.key_name
   vpc_security_group_ids = [aws_security_group.web.id]
